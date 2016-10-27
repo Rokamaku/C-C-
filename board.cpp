@@ -23,12 +23,11 @@ void Board::GamePlay() {
     TopLeft.y = startBoardY;
     BotRight.x = startBoardX + width - 1;
     BotRight.y = startBoardY + height - 1;
-    Snake* snk = new Snake(LINES / 2, COLS / 2);
+    Snake* snk = new Snake((startBoardY + height) / 2, (startBoardX + width) / 2);
     snk->initSnake();
     int Direction = 2;
     int KeyPress;
-    mvprintw(startBoardY + height + 2 , startBoardX + 2, "Score: %d", Score);
-    move( (startBoardY + height - 2) / 2, (startBoardX + width - 2)  / 2);
+    mvprintw(startBoardY + height + 1  , startBoardX + 2, "Score: %d", Score);
     initFruit(snk->getSnakePos(),snk->getSnakeHead());
     do {
         int info = snk->SnakeMove(Direction, KeyPress, TopLeft, BotRight, Fruit);
@@ -40,7 +39,7 @@ void Board::GamePlay() {
         {
             initFruit(snk->getSnakePos(), snk->getSnakeHead());
             Score++;
-            mvprintw(startBoardY + height + 2 , startBoardX + 2, "Score: %d", Score);
+            mvprintw(startBoardY + height +1 , startBoardX + 2, "Score: %d", Score);
             refresh();
         }
         else
@@ -73,13 +72,14 @@ void Board::initFruit(vector<Pos> SnakePos, Pos SnakeHead) {
 }
 
 void Board::EndGame() {
-    WINDOW* notiEnd = create_newwin(8, 26, startBoardY + height / 2 - 4, startBoardX + width /2 - 13);
+    WINDOW* notiEnd = create_newwin(6, 26, (startBoardY + height) / 2 - 3, (startBoardX + width) /2 - 13);
     wattron(notiEnd, A_BOLD | COLOR_PAIR(2));
     mvwprintw(notiEnd, 2, 8, "GAME OVER!");
     mvwprintw(notiEnd, 4, 6, "Your score: %d", Score);
     wattroff(notiEnd, A_BOLD | COLOR_PAIR(2));
+    move(0,0);
     wrefresh(notiEnd);
-    napms(800);
+    napms(1000);
 }
 
 WINDOW* Board::create_newwin(int height, int width, int starty, int startx)
@@ -89,5 +89,4 @@ WINDOW* Board::create_newwin(int height, int width, int starty, int startx)
     box(local_win, 0 , 0);
     wrefresh(local_win);
     return local_win;
-
 }

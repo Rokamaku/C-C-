@@ -7,7 +7,8 @@
 
 using namespace std;
 
-struct Pos {
+class Pos {
+public:
     int x;
     int y;
 };

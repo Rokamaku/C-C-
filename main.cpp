@@ -9,7 +9,14 @@ void initWin();
 int main()
 {
     initWin();
-    Board* board = new Board(COLS, LINES - 5);
+    if (COLS < 5 || LINES < 8)
+    {
+        mvprintw(0, 0, "Too small to display!");
+        getch();
+        endwin();
+        return 1;
+    }
+    Board* board = new Board(COLS, LINES - 3);
     board->drawBoard();
     board->GamePlay();
     getch();
