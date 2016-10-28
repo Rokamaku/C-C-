@@ -7,17 +7,20 @@
 
 using namespace std;
 
-struct Pos {
+//store coordinate
+class Pos {
+public:
     int x;
     int y;
 };
 
 class Snake {
 private:
+    //each coordinate of snake body will be stored in a vector
     Pos Head;
     vector<Pos> posSnake;
-    bool Alive;
-    int SnakeSpeed;
+    bool Alive;  //check the snake alive or not
+    int SnakeSpeed;  //speed of snake
 
 public:
     Snake(int PosY, int PosX) {

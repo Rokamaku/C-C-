@@ -5,11 +5,9 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     snake.cpp \
-    board.cpp \
-    menu.cpp
+    board.cpp
 LIBS += -lncurses
 
 HEADERS += \
     snake.h \
-    board.h \
-    menu.h
+    board.h
