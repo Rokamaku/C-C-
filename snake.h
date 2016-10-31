@@ -2,7 +2,7 @@
 #define SNAKE_H
 #include <ncurses.h>
 #include <vector>
-#include <math.h>
+#include <stdlib.h>
 #endif // SNAKE_H
 //#include "board.h"
 
