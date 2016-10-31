@@ -20,14 +20,14 @@ void Board::drawBoard() {
     attroff(A_REVERSE);
 }
 
-void Board::GamePlay() {
+void Board::GamePlay(int SnakeSpeed) {
     Pos TopLeft, BotRight;  // position of top left corner and bottom right corner bound
     TopLeft.x = startBoardX;
     TopLeft.y = startBoardY;
     BotRight.x = startBoardX + width - 1;
     BotRight.y = startBoardY + height - 1;
     //init Snake with init posiotion of snake is in the central of bound
-    Snake* snk = new Snake((startBoardY + height) / 2, (startBoardX + width) / 2);
+    Snake* snk = new Snake((startBoardY + height) / 2, (startBoardX + width) / 2, SnakeSpeed);
     snk->initSnake();
     int Direction = 2; //default direction is right
     int KeyPress;
@@ -66,7 +66,7 @@ void Board::GamePlay() {
             Score++;                                            //increse score
             mvprintw(startBoardY + height + 1 , startBoardX + 2, "Score: %d", Score); //print score
             refresh();//show score and fruit
-            napms(snk->getSnakeSpeed() * 100);
+            napms(snk->getSnakeSpeed() * 50);
         }
         else
         {
@@ -128,9 +128,10 @@ void Board::EndGame() {
     mvwprintw(notiEnd, 5, 3, "Press ENTER to quit!", Score);
     wrefresh(notiEnd);
     wattroff(notiEnd, A_BOLD | COLOR_PAIR(2));
-    while (wgetch(notiEnd) != '\n') {
-        continue;
-    }
+    int press;
+    do {
+        press = wgetch(notiEnd);
+    } while (press != '\n');
 }
 //if win game, show this window
 void Board::WinGame() {
@@ -144,10 +145,10 @@ void Board::WinGame() {
     mvwprintw(notiWin, 5, 3, "Press ENTER to quit!", Score);
     wrefresh(notiWin);
     wattroff(notiWin, A_BOLD | COLOR_PAIR(2));
-    while (wgetch(notiWin) != '\n') {
-        continue;
-    }
-
+    int press;
+    do {
+        press = wgetch(notiWin);
+    } while (press != '\n');
 }
 
 WINDOW* Board::PauseGame() {

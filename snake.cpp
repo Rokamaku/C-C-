@@ -1,5 +1,6 @@
 #include "snake.h"
 
+
 //get snake speed
 int Snake::getSnakeSpeed() {
     return SnakeSpeed;
@@ -110,7 +111,7 @@ int Snake::SnakeMove(int &Direction, int &KeyPress, Pos TopLeft, Pos BotRight, P
     }
     move(0,0);
     refresh(); //show the snake into screen
-    napms(SnakeSpeed * 100); //delay of each snake movement
+    napms(SnakeSpeed * 20); //delay of each snake movement
     return 0;
 }
 

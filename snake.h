@@ -2,6 +2,7 @@
 #define SNAKE_H
 #include <ncurses.h>
 #include <vector>
+#include <math.h>
 #endif // SNAKE_H
 //#include "board.h"
 
@@ -23,10 +24,10 @@ private:
     int SnakeSpeed;  //speed of snake
 
 public:
-    Snake(int PosY, int PosX) {
+    Snake(int PosY, int PosX, int Speed) {
         Head.x = PosX;
         Head.y = PosY;
-        SnakeSpeed = 1;
+        SnakeSpeed = abs(Speed - 10);
         Alive = true;
     }
     void initSnake();

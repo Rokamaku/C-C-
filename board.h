@@ -25,7 +25,7 @@ public:
         Victory = false;
     }
     void drawBoard();
-    void GamePlay();
+    void GamePlay(int );
     void initFruit(vector<Pos> , Pos);
     WINDOW* PauseGame();
     void EndGame();
