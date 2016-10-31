@@ -18,7 +18,6 @@ int main()
         return 1;
     }
     DisplayInfo();
-    //mvprintw(LINES / 2, COLS / 2, "SNAKE");
     int key;
     getch();
     clear();
@@ -76,5 +75,4 @@ void DisplayInfo() {
         i++;
     } while (key = getch() != '\n');
     attroff(A_BOLD |COLOR_PAIR(4));
-    //refresh();
 }

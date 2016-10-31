@@ -64,7 +64,7 @@ void Board::GamePlay() {
         {
             initFruit(snk->getSnakePos(), snk->getSnakeHead()); //create new fruit
             Score++;                                            //increse score
-            mvprintw(startBoardY + height +1 , startBoardX + 2, "Score: %d", Score); //print score
+            mvprintw(startBoardY + height + 1 , startBoardX + 2, "Score: %d", Score); //print score
             refresh();//show score and fruit
             napms(snk->getSnakeSpeed() * 100);
         }
@@ -118,14 +118,19 @@ void Board::initFruit(vector<Pos> SnakePos, Pos SnakeHead) {
 //after the snake die, show a window to inform the score and end game
 void Board::EndGame() {
     //create new window with height, width, x position start and y start postion
-    WINDOW* notiEnd = create_newwin(6, 26, (startBoardY + height) / 2 - 3, (startBoardX + width) /2 - 13);
+    WINDOW* notiEnd = create_newwin(8, 26, (startBoardY + height) / 2 - 3, (startBoardX + width) /2 - 13);
     wattron(notiEnd, A_BOLD | COLOR_PAIR(2));
     mvwprintw(notiEnd, 2, 8, "GAME OVER!");
     mvwprintw(notiEnd, 4, 6, "Your score: %d", Score);
-    wattroff(notiEnd, A_BOLD | COLOR_PAIR(2));
     move(0,0);
     wrefresh(notiEnd);//show the window
-    wgetch(notiEnd);
+    napms(1000);
+    mvwprintw(notiEnd, 5, 3, "Press ENTER to quit!", Score);
+    wrefresh(notiEnd);
+    wattroff(notiEnd, A_BOLD | COLOR_PAIR(2));
+    while (wgetch(notiEnd) != '\n') {
+        continue;
+    }
 }
 //if win game, show this window
 void Board::WinGame() {
@@ -133,10 +138,15 @@ void Board::WinGame() {
     wattron(notiWin, A_BOLD | COLOR_PAIR(2));
     mvwprintw(notiWin, 2, 6, "CONGRATULATION !");
     mvwprintw(notiWin, 4, 6, "You are winner !");
-    wattroff(notiWin, A_BOLD | COLOR_PAIR(2));
     move(0,0);
     wrefresh(notiWin);//show the window
-    wgetch(notiWin);
+    napms(1000);
+    mvwprintw(notiWin, 5, 3, "Press ENTER to quit!", Score);
+    wrefresh(notiWin);
+    wattroff(notiWin, A_BOLD | COLOR_PAIR(2));
+    while (wgetch(notiWin) != '\n') {
+        continue;
+    }
 
 }
 

@@ -105,7 +105,7 @@ int Snake::SnakeMove(int &Direction, int &KeyPress, Pos TopLeft, Pos BotRight, P
         napms(100);
         mvprintw(Head.y, Head.x, "X");
         refresh();
-        napms(100);
+        napms(500);
         return 3;
     }
     move(0,0);
