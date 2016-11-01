@@ -66,7 +66,7 @@ void Board::GamePlay(int SnakeSpeed) {
             Score++;                                            //increse score
             mvprintw(startBoardY + height + 1 , startBoardX + 2, "Score: %d", Score); //print score
             refresh();//show score and fruit
-            napms(snk->getSnakeSpeed() * 20);
+            napms(snk->getSnakeSpeed());
         }
         else
         {

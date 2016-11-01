@@ -111,7 +111,7 @@ int Snake::SnakeMove(int &Direction, int &KeyPress, Pos TopLeft, Pos BotRight, P
     }
     move(0,0);
     refresh(); //show the snake into screen
-    napms(SnakeSpeed * 20); //delay of each snake movement
+    napms(SnakeSpeed); //delay of each snake movement
     return 0;
 }
 
