@@ -27,7 +27,7 @@ public:
     Snake(int PosY, int PosX, int Speed) {
         Head.x = PosX;
         Head.y = PosY;
-        SnakeSpeed = abs(Speed - 10);
+        SnakeSpeed = abs(Speed - 10) * 20;
         Alive = true;
     }
     void initSnake();
